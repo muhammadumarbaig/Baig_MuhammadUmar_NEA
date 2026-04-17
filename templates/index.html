@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}HOME{% endblock %}
+{% block head %}{% endblock %}
+{% block content %}
+
+<h1 style="text-align: center;">FDD Detection Systems</h1>
+<form action="#" style="text-align: center;" method="POST">
+    <label for="userorg" style="font-size: 20px; text-align: center;">Please enter the company you are associated with</label>
+    <br>
+    <div>
+        <select name="userorg" id="userorg" style="width: 200px; height: 50px; font-size: 30px;">
+            {%for org in allorgs%}
+            <option value="{{org}}">{{org}}</option>
+            {%endfor%}
+        </select>
+        <input type="submit" style="width: 200px; height: 50px; font-size: 30px; border-radius: 20px;">
+    </div>
+</form>
+
+
+{% endblock %}

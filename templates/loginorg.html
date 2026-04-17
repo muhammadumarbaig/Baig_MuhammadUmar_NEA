@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}{{userorg}} LOGIN{% endblock %}
+{% block head %}<!--position relative means any elements positioned inside container will be positioned relative to that container-->
+<style type="text/css">
+    .container{
+        position: relative;
+        width: 700px;
+        margin: 0 auto;
+    }
+    .container img{
+        width: 100%;
+    }
+    .inside{
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        background-color: chartreuse;
+        color: crimson;
+        padding: 5px;
+    }
+    .msgs{
+        color: red;
+        font-size: 20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    /* simple form layout */
+    .login-row { width: 100%; box-sizing: border-box; margin-top: 12px; }
+    .form-left { float: left; width: 68%; text-align: left; }
+    .form-left label { display: block; margin-bottom: 6px; font-size: 18px; }
+    .form-left input { width: 96%; padding: 6px; font-size: 16px; box-sizing: border-box; }
+    .form-right { float: right; width: 28%; display: flex; align-items: center; justify-content: flex-end; }
+    .form-right input[type="submit"] { width: 120px; height: 42px; font-size: 18px; border-radius: 8px; }
+    .clearfix { clear: both; }
+</style>
+
+{% endblock %}
+{% block content %}
+<div style="text-align: center" class="container">
+    <h1>{{userorg}}</h1>
+    <img src="{{img}}" alt="{{userorg}} image">
+    <!--<div class="inside">Inside Text</div>-->  
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <div class="msgs"><b>{{msg}}</b></div>
+            {%endfor%}
+        {% endif %}
+    {% endwith %}
+    
+    <!---->
+    <form action="#" method="post" style="text-align: center;">
+        <div class="login-row">
+            <div class="form-left">
+                <label for="username">Username:
+                    <input type="text" id="username" name="username" required>
+                </label>
+                <label for="password">Password:
+                    <input type="password" id="password" name="password" required>
+                </label>
+            </div>
+            <div class="form-right">
+                <input type="submit" id="logindetails" value="Login">
+                <a href="{{url_for("register", userorg=userorg)}}" target="_blank">
+                    No account? Register Here!
+                </a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </form>
+</div>
+{% endblock %}

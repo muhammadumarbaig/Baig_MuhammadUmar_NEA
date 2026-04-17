@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %}{{ userorg }} REGISTER{% endblock %}
+
+{% block head %}
+<style>
+  .msgs{
+    color: red;
+    font-size: 20px;
+    margin-top: 10px;
+}
+  .container {
+    width: 700px;
+    margin: 20px auto;
+    overflow: hidden;
+  }
+  .left {
+    float: left;
+    width: 48%;
+  }
+  .left img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .right {
+    float: right;
+    width: 48%;
+    text-align: left;
+  }
+  .form-row { margin-bottom: 10px; }
+  .form-row label { display:block; margin-bottom:4px; font-weight:600; }
+  .form-row input { width:100%; padding:6px; box-sizing: border-box; }
+  .form-actions { text-align: right; margin-top:8px; }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="left">
+    <h2 style="margin-top:0">{{ userorg }}</h2>
+    <img src="{{ img }}" alt="{{ userorg }} image">
+  </div>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for msg in messages %}
+        <div class="msgs"><b>{{msg}}</b></div>
+      {%endfor%}
+    {% endif %}
+  {% endwith %}
+
+
+
+  <div class="right">
+    <h3>Create an account</h3>
+    <form action="" method="post">
+      <div class="form-row">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" required>
+      </div>
+
+      <div class="form-row">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" required>
+      </div>
+
+      <div class="form-row">
+        <label for="confirm_password">Confirm password</label>
+        <input id="confirm_password" name="confirm_password" type="password" required>
+      </div>
+
+      <div class="form-row">
+        <label for="usersite">Site</label>
+        <select name="usersite" id="usersite" required>
+          {% for site in allsites %}
+            <option value="{{site}}">{{site}}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-actions">
+        <input type="submit" value="Register">
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
